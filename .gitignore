@@ -1,0 +1,21 @@
+# Django
+*.py[cod]
+*$py.class
+__pycache__/
+db.sqlite3
+media/
+static/
+.env
+vairables/
+*.log
+
+# Models
+yolov8n.pt
+
+# Others
+.vscode/
+.idea/
+*.spec
+dist/
+build/
+start_server.bat
