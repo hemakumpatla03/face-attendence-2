@@ -30,8 +30,9 @@ RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir numpy==1.26.3 "setuptools<70" wheel
 
 # Install dlib with specific flags to ensure it works on Render
-# Use --no-build-isolation to ensure CMAKE_ARGS and the system cmake are used
-RUN export CMAKE_ARGS="-DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DUSE_AVX_INSTRUCTIONS=OFF" && \
+# We force 1 thread (-j 1) and disable AVX to prevent RAM usage from exceeding 8GB
+RUN export CMAKE_ARGS="-DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DUSE_AVX_INSTRUCTIONS=OFF -DDLIB_USE_CUDA=0 -DDLIB_NO_GUI_SUPPORT=1" && \
+    export MAKEFLAGS="-j 1" && \
     pip install --no-cache-dir dlib==19.24.2 --no-build-isolation
 
 # Install the rest of the requirements
