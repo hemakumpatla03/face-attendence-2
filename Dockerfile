@@ -27,7 +27,7 @@ WORKDIR /app
 COPY requirements.txt .
 # Pin build dependencies for stability
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir cmake numpy==1.26.3 setuptools<70 wheel
+    pip install --no-cache-dir cmake numpy==1.26.3 "setuptools<70" wheel
 
 # Install dlib with specific flags to ensure it works on Render
 RUN export CMAKE_ARGS="-DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DUSE_AVX_INSTRUCTIONS=OFF" && \
